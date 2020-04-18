@@ -1,0 +1,34 @@
+
+<div class="container">
+  <div class="jumbotron">
+<h4 class="alert alert-primary">Todo List :</h4>
+  <table class="table" border="2">
+  <tr>
+    <th>Id</th>
+    <th>Todo Name </th>
+    <th>Actions</th>
+  </tr>
+  <tr *ngFor="let todo of todos">
+    <td>{{todo.id}}</td>
+    <td>{{todo.name}}</td>
+    <!-- <td>
+     <span *ngIf="!editMode">{{todo.name}}</span>
+      <input type="text" [(ngModel)]="todo.name" value={{todo.name}} *ngIf="editMode" /> 
+    </td> -->
+    <td><button type="button" (click)="OnTodoUpdate(todo)" class="btn btn-secondary btn-sm">Update</button>:
+      <button type="button" (click)="onTodoDelete(todo.id)" class="btn btn-danger btn-sm">Delete</button></td>
+  </tr>
+</table>
+<form [formGroup]="todoForm" (ngSubmit)="onTodoFormSubmit()">
+  <table>
+    <tr><td>Todo Name : </td><td><input formControlName="name" *ngIf="!editMode"/>
+      <input formControlName="name" *ngIf="editMode"/>
+    </td></tr>	
+    <tr><td colspan="2">
+      <button *ngIf="!editMode" class="btn btn-primary">CREATE</button> 
+      <button *ngIf="editMode" (click)="OnUpdateSave()" class="btn btn-secondary">Save</button> 
+    </td></tr>
+  </table>
+ </form> 
+</div>
+</div>
